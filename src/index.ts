@@ -1,25 +1,40 @@
-import express, { Request, Response } from 'express';
+import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
 
-// Inicialización de dotenv para cargar variables de entorno desde el archivo correspondiente
-const envFilePath = path.resolve(__dirname, `../.env.${process.env.ENV || ''}`);
-dotenv.config({ path: envFilePath });
+const app: Express = express();
 
-// Crear una instancia de Express
-const app = express();
-const port = process.env.PORT || 3000;
+const initializeEnvironment = (): void => {
+	const envFilePath: string = path.resolve(
+		__dirname,
+		`../.env.${process.env.ENV || ''}`,
+	);
+	dotenv.config({ path: envFilePath });
+};
 
-// Definir middleware para parsear JSON y urlencode
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+const applyMiddleware = (): void => {
+	app.use(express.json());
+	app.use(express.urlencoded({ extended: true }));
+};
 
-// Ruta de ejemplo
-app.get('/', (req: Request, res: Response) => {
-  res.send('¡Hola, mundo!');
-});
+const defineRoutes = (): void => {
+	app.get('/', (req: Request, res: Response) => {
+		res.send('¡Hola, mundo!');
+	});
+};
 
-// Iniciar el servidor
-app.listen(port, () => {
-  console.log(`Servidor corriendo en el puerto ${port}`);
-});
+const startServer = (): void => {
+	const port: number = parseInt(process.env.PORT || '3000', 10);
+	app.listen(port, () => {
+		console.log(`Servidor corriendo en el puerto ${port}`);
+	});
+};
+
+const initializeApp = (): void => {
+	initializeEnvironment();
+	applyMiddleware();
+	defineRoutes();
+	startServer();
+};
+
+initializeApp();
