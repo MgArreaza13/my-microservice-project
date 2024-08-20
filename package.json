@@ -1,0 +1,39 @@
+{
+	"name": "my-microservice-project",
+	"version": "1.0.0",
+	"description": "Microservice project using TypeScript, hexagonal architecture, and best practices.",
+	"scripts": {
+		"start": "node dist/index.js",
+		"build": "tsc",
+		"dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+		"lint": "eslint 'src/**/*.{ts,tsx}'",
+		"lint:fix": "eslint --fix 'src/**/*.{ts,tsx}'",
+		"test": "jest",
+		"prettier": "prettier --write 'src/**/*.{ts,tsx,json,md}'"
+	},
+	"author": "Miguel Arreaza",
+	"license": "MIT",
+	"dependencies": {
+		"express": "^4.17.1"
+	},
+	"devDependencies": {
+		"@types/node": "^16.0.0",
+		"typescript": "^4.4.3",
+		"ts-node-dev": "^1.1.6",
+		"jest": "^27.2.0",
+		"eslint": "^7.32.0",
+		"prettier": "^2.4.1",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-prettier": "^3.4.0",
+		"@typescript-eslint/parser": "^4.28.2",
+		"@typescript-eslint/eslint-plugin": "^4.28.2"
+	},
+	"browserslist": "> 0.5%, last 2 versions, Firefox ESR, not dead",
+	"eslintConfig": {
+		"extends": [
+			"eslint:recommended",
+			"plugin:@typescript-eslint/recommended",
+			"prettier"
+		]
+	}
+}
