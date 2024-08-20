@@ -76,4 +76,4 @@ Sigue estos pasos para comenzar a utilizar el proyecto:
 
 ## Autor
 
-Tu Nombre
+Miguel Arreaza
