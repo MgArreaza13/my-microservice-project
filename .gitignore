@@ -12,3 +12,6 @@ dist/
 
 # Others
 .DS_Store
+
+*.env
+*.env.*

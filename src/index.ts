@@ -1,4 +1,10 @@
 import express, { Request, Response } from 'express';
+import dotenv from 'dotenv';
+import path from 'path';
+
+// Inicialización de dotenv para cargar variables de entorno desde el archivo correspondiente
+const envFilePath = path.resolve(__dirname, `../.env.${process.env.ENV || 'local'}`);
+dotenv.config({ path: envFilePath });
 
 // Crear una instancia de Express
 const app = express();
