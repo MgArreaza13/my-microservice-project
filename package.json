@@ -9,7 +9,6 @@
 		"dev:local": "ENV=local ts-node-dev --respawn --transpile-only src/index.ts",
 		"lint": "eslint 'src/**/*.{ts,tsx}'",
 		"lint:fix": "eslint --fix 'src/**/*.{ts,tsx}'",
-		"test": "jest",
 		"prettier": "prettier --write 'src/**/*.{ts,tsx,json,md}'"
 	},
 	"author": "Miguel Arreaza",
