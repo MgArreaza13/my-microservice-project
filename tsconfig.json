@@ -11,9 +11,10 @@
     "baseUrl": "./",                             // Establece el baseUrl para módulos
     "outDir": "dist",                            // Directorio de salida de los archivos compilados
     "paths": {
-      "*": ["types/*"]
+      "*": ["types/*"],
+			"src/*": ["src/*"]
     }
   },
-  "include": ["src/**/*.ts", "tests/**/*.ts"],   // Incluye tanto código fuente como pruebas
+  "include": ["src/**/*", "tests/**/*.ts"],   // Incluye tanto código fuente como pruebas
   "exclude": ["node_modules"]                    // Excluye todos los módulos externos
 }
