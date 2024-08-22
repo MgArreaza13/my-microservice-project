@@ -11,7 +11,7 @@
     "baseUrl": "./",                             // Establece el baseUrl para módulos
     "outDir": "dist",                            // Directorio de salida de los archivos compilados
     "paths": {
-      "*": ["types/*"],
+      // "*": ["types/*"],
 			"src/*": ["src/*"]
     }
   },
