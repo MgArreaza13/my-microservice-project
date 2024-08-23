@@ -18,4 +18,7 @@ RUN npm install tsx
 COPY src ./src
 
 # Expone el puerto en el que se ejecutará la aplicación
-EXPOSE 3000
+ENV NODE_ENV=${NODE_ENV}
+ENV APP_PORT=${APP_PORT}
+
+EXPOSE ${APP_PORT}
