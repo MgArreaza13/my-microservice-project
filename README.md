@@ -93,13 +93,13 @@ my-microservices-project
 ├── .gitignore
 ├── .nvmrc
 ├── .prettierrc
-├── Dockerfile
 ├── Makefile
 ├── README.md
 ├── app
 ├── babel.config.js
 ├── docker
-├── docker-compose.yml
+│   ├── Dockerfile
+│   └── docker-compose.yml
 ├── jest.config.js
 ├── package-lock.json
 ├── package.json
