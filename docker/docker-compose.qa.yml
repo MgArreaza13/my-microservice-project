@@ -1,0 +1,12 @@
+# docker-compose.qa.yml
+
+version: '3.8'
+
+services:
+  app:
+    env_file:
+      - ../.env.qa
+
+  db:
+    env_file:
+      - ../.env.qa

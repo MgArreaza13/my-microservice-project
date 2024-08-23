@@ -1,0 +1,12 @@
+# docker-compose.local.yml
+
+version: '3.8'
+
+services:
+  app:
+    env_file:
+      - ../.env.local
+
+  db:
+    env_file:
+      - ../.env.local

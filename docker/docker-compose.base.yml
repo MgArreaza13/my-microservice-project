@@ -1,3 +1,5 @@
+# docker-compose.base.yml
+
 version: '3.8'
 
 services:
@@ -7,16 +9,16 @@ services:
       dockerfile: docker/Dockerfile
     depends_on:
       - db
-    env_file:
-      - ../.env  # Ajusta la ruta para apuntar al archivo .env en el directorio raíz
     ports:
-      - "3000:3000"
+      - "${APP_PORT}:${APP_PORT}"
     command: npm run dev
+    volumes:
+      - ../src:/app/src
+      - ../package*.json:/app/package*.json
+      - ../tsconfig.json:/app/tsconfig.json
 
   db:
     image: postgres:14
-    env_file:
-      - ../.env  # Ajusta la ruta para apuntar al archivo .env en el directorio raíz
     volumes:
       - db-data:/var/lib/postgresql/data
 

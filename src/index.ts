@@ -18,7 +18,7 @@ const startServer = async (): Promise<void> => {
 
     // Crear e iniciar el servidor una vez la base de datos esté lista
     const app = createApp();
-    const port: number = parseInt(process.env.PORT || '3000', 10);
+    const port: number = parseInt(process.env.APP_PORT || '3000', 10);
     const server = app.listen(port, () => {
       console.log(`Servidor corriendo en el puerto ${port}`);
     });

@@ -1,0 +1,12 @@
+# docker-compose.staging.yml
+
+version: '3.8'
+
+services:
+  app:
+    env_file:
+      - ../.env.staging
+
+  db:
+    env_file:
+      - ../.env.staging

@@ -1,42 +1,35 @@
 # Variables
-COMPOSE_FILE=docker/docker-compose.yml
-DOCKER_COMPOSE=docker-compose -f $(COMPOSE_FILE)
+ENVIRONMENT ?= local
+COMPOSE_BASE = docker/docker-compose.base.yml
+COMPOSE_FILE = docker/docker-compose.$(ENVIRONMENT).yml
+ENV_FILE = .env.$(ENVIRONMENT)
+
+# Exportar variables de entorno del archivo .env adecuado
+include $(ENV_FILE)
+export $(shell sed 's/=.*//' $(ENV_FILE))
 
 # Comandos
-.PHONY: build up down logs exec
+.PHONY: up down build help
 
-## Construir el contenedor de la aplicación
-build:
-	$(DOCKER_COMPOSE) build
-
-## Iniciar los servicios en segundo plano (detached mode)
+## Iniciar contenedores utilizando los archivos de configuración de Docker Compose
 up:
-	$(DOCKER_COMPOSE) up -d
+	@echo "Iniciando entorno $(ENVIRONMENT)..."
+	docker-compose -f $(COMPOSE_BASE) -f $(COMPOSE_FILE) up -d
 
-## Detener los servicios
+## Detener y eliminar contenedores
 down:
-	$(DOCKER_COMPOSE) down
+	@echo "Deteniendo servicios para entorno $(ENVIRONMENT)..."
+	docker-compose -f $(COMPOSE_BASE) -f $(COMPOSE_FILE) down
 
-## Ver logs de todos los servicios
-logs:
-	$(DOCKER_COMPOSE) logs -f
+## Construir imágenes de Docker
+build:
+	@echo "Construyendo imágenes para entorno $(ENVIRONMENT)..."
+	docker-compose -f $(COMPOSE_BASE) -f $(COMPOSE_FILE) build
 
-## Ejecutar un comando dentro del contenedor de la aplicación
-exec:
-	$(DOCKER_COMPOSE) exec app /bin/sh
-
-## Rebuild y restart (compilar de nuevo y reiniciar los servicios)
-rebuild:
-	$(DOCKER_COMPOSE) down
-	$(DOCKER_COMPOSE) build
-	$(DOCKER_COMPOSE) up -d
-
-## Help - Ayuda con descripciones
+## Help - Mostrar ayuda con descripciones de los comandos disponibles
 help:
 	@echo "Comandos disponibles:"
 	@echo "  build   - Construir el contenedor de la aplicación"
-	@echo "  up      - Iniciar los servicios en segundo plano (detached mode)"
-	@echo "  down    - Detener los servicios"
-	@echo "  logs    - Ver logs de todos los servicios"
-	@echo "  exec    - Ejecutar un comando dentro del contenedor de la aplicación"
-	@echo "  rebuild - Rebuild y restart (compilar de nuevo y reiniciar los servicios)"
+	@echo "  up      - Iniciar los servicios en modo detached"
+	@echo "  down    - Detener y eliminar los servicios"
+	@echo "  help    - Mostrar esta ayuda"
