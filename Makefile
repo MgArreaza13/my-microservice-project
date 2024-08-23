@@ -1,29 +1,42 @@
-# # Define una variable para el entorno. Si no se especifica, usa 'dev' por defecto.
-# ENVIRONMENT ?= dev
+# Variables
+COMPOSE_FILE=docker/docker-compose.yml
+DOCKER_COMPOSE=docker-compose -f $(COMPOSE_FILE)
 
-# # Define los comandos para cada tarea
+# Comandos
+.PHONY: build up down logs exec
 
-# # Inicia los servicios de Docker en el entorno especificado
-# up:
-# 	@echo "Iniciando el entorno $(ENVIRONMENT)..."
-# 	docker-compose -f docker/docker-compose.$(ENVIRONMENT).yml up -d
-
-# # Detiene los servicios de Docker en el entorno especificado
-# down:
-# 	@echo "Deteniendo el entorno $(ENVIRONMENT)..."
-# 	docker-compose -f docker/docker-compose.$(ENVIRONMENT).yml down
-
-
-.PHONY: build up down start
-
+## Construir el contenedor de la aplicación
 build:
-    docker-compose build
+	$(DOCKER_COMPOSE) build
 
+## Iniciar los servicios en segundo plano (detached mode)
 up:
-    docker-compose up -d
+	$(DOCKER_COMPOSE) up -d
 
+## Detener los servicios
 down:
-    docker-compose down
+	$(DOCKER_COMPOSE) down
 
-start:
-    docker-compose run app npm start
+## Ver logs de todos los servicios
+logs:
+	$(DOCKER_COMPOSE) logs -f
+
+## Ejecutar un comando dentro del contenedor de la aplicación
+exec:
+	$(DOCKER_COMPOSE) exec app /bin/sh
+
+## Rebuild y restart (compilar de nuevo y reiniciar los servicios)
+rebuild:
+	$(DOCKER_COMPOSE) down
+	$(DOCKER_COMPOSE) build
+	$(DOCKER_COMPOSE) up -d
+
+## Help - Ayuda con descripciones
+help:
+	@echo "Comandos disponibles:"
+	@echo "  build   - Construir el contenedor de la aplicación"
+	@echo "  up      - Iniciar los servicios en segundo plano (detached mode)"
+	@echo "  down    - Detener los servicios"
+	@echo "  logs    - Ver logs de todos los servicios"
+	@echo "  exec    - Ejecutar un comando dentro del contenedor de la aplicación"
+	@echo "  rebuild - Rebuild y restart (compilar de nuevo y reiniciar los servicios)"
