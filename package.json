@@ -7,7 +7,7 @@
 		"start": "node dist/index.js",
 		"build": "tsc",
 		"dev": "tsx src/index.ts",
-		"dev:local": "ENV=local ts-node-dev --respawn --transpile-only src/index.ts",
+		"dev:local": "ENV=local tsx watch src/index.ts",
 		"lint": "eslint 'src/**/*.{ts,tsx}'",
 		"lint:fix": "eslint --fix 'src/**/*.{ts,tsx}'",
 		"prettier": "prettier --write 'src/**/*.{ts,tsx,json,md}'",
