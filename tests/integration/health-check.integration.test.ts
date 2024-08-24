@@ -13,7 +13,8 @@ describe('Health Check Integration Test', () => {
   it('should respond with a healthy status', async () => {
     const res = await request(app).get('/health');
     expect(res.status).toBe(200);
-    expect(res.body.status).toBe('Healthy');
-    expect(res.body).toHaveProperty('timestamp');
+    expect(res.body.healthStatus.status).toBe('Healthy');
+    expect(res.body.healthStatus).toHaveProperty('timestamp');
+		expect(res.body.healthDatabaseStatus).toBe('Database is healthy');
   });
 });

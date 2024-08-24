@@ -21,10 +21,6 @@ export PRINT_HELP_PYSCRIPT
 
 # Tasks
 
-## Display this help message
-help:
-	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
-
 ## Run services in development environment
 dev: ENVIRONMENT = dev
 dev: up
@@ -64,7 +60,7 @@ build:
 test:
 	@echo "Running tests for environment $(ENVIRONMENT)"
 	# Aquí podrías agregar comandos para ejecutar tus pruebas unitarias, por ejemplo:
-	# docker-compose --env-file $(ENV_FILE) -f $(COMPOSE_BASE) -f $(COMPOSE_FILE) run app npm test
+	docker-compose --env-file $(ENV_FILE) -f $(COMPOSE_BASE) -f $(COMPOSE_FILE) run app npm test
 
 
 help:

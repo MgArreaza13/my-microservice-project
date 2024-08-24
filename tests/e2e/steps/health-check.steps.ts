@@ -21,7 +21,8 @@ defineFeature(feature, test => {
 
     then('I should receive a healthy response', () => {
       expect(response.status).toBe(200);
-      expect(response.body.status).toBe('Healthy');
+      expect(response.body.healthStatus.status).toBe('Healthy');
+      expect(response.body.healthDatabaseStatus).toBe('Database is healthy');
     });
   });
 });

@@ -15,7 +15,11 @@ COPY tsconfig.json ./
 RUN npm install tsx
 
 # Copia el código fuente al contenedor
-COPY src ./src
+# COPY src ./src
+
+# COPY tests ./tests
+
+COPY . ./
 
 # Expone el puerto en el que se ejecutará la aplicación
 ENV NODE_ENV=${NODE_ENV}
