@@ -129,6 +129,7 @@ Para preguntas o discusiones sobre este proyecto, no dudes en abrir un issue en 
 
 ```
 my-microservices-project
+├── .dockerignore
 ├── .editorconfig
 ├── .env
 ├── .env.dev
@@ -142,11 +143,14 @@ my-microservices-project
 ├── .gitignore
 ├── .nvmrc
 ├── .prettierrc
+├── .vscode
+│   └── settings.json
 ├── Makefile
 ├── README.md
 ├── app
 ├── babel.config.js
 ├── docker
+│   ├── .dockerignore
 │   ├── Dockerfile
 │   ├── docker-compose.base.yml
 │   ├── docker-compose.dev.yml
@@ -155,7 +159,6 @@ my-microservices-project
 │   ├── docker-compose.qa.yml
 │   └── docker-compose.staging.yml
 ├── jest.config.js
-├── package*.json
 ├── package-lock.json
 ├── package.json
 ├── scripts
@@ -166,6 +169,7 @@ my-microservices-project
 │   ├── application
 │   │   ├── ports
 │   │   └── use-cases
+│   │       ├── health-check-database.use-case.ts
 │   │       └── health-check.use-case.ts
 │   ├── config
 │   ├── domain
@@ -201,6 +205,7 @@ my-microservices-project
 │   └── unit
 │       └── health-check.use-case.test.ts
 └── tsconfig.json
+
 
 
 ```
